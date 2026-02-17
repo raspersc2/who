@@ -1,6 +1,16 @@
-from typing import Optional
+import os
+import sys
+from typing import Optional, Any
 
+import importlib
 from ares import AresBot
+from sc2.data import Race
+
+RACE_TO_BOT_NAME = {
+    Race.Protoss: "really",
+    Race.Terran: "why",
+    Race.Zerg: "what",
+}
 
 
 class MyBot(AresBot):
@@ -15,9 +25,32 @@ class MyBot(AresBot):
         """
         super().__init__(game_step_override)
 
+        self.opening_handler: Optional[Any] = None
+        self.opening_chat_tag: bool = False
+        self._switched_to_prevent_tie: bool = False
+        self.injured_general_unit_to_repairing_scvs: dict[int, set[int]] = dict()
+        self._terran_bunker_finder_activated: bool = False
+        self._dino_tag: bool = False
+        self._on_gas: bool = True
+
     async def on_step(self, iteration: int) -> None:
         await super(MyBot, self).on_step(iteration)
-        # bot logic here ...
+
+    async def on_start(self) -> None:
+        bot_name: str = RACE_TO_BOT_NAME[self.race]
+        path = os.path.join(os.path.dirname(__file__), bot_name)
+        if path not in sys.path:
+            sys.path.insert(0, path)
+
+        module_path = f"bot.{bot_name}.bot.main"
+
+        module = importlib.import_module(module_path)
+        MyBot = getattr(module, "MyBot")
+
+        self.__class__ = MyBot
+
+        await self.on_start()
+
 
     """
     Can use `python-sc2` hooks as usual, but make a call the inherited method in the superclass
