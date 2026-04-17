@@ -32,6 +32,7 @@ class MyBot(AresBot):
         self._terran_bunker_finder_activated: bool = False
         self._dino_tag: bool = False
         self._on_gas: bool = True
+        self._switched_due_to_worker_rush: bool = False
 
     async def on_step(self, iteration: int) -> None:
         await super(MyBot, self).on_step(iteration)
