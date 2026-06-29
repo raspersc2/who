@@ -45,7 +45,15 @@ BuildChoices:
     Terran:
         BotName: TerranRace
         Cycle:
+            - OneBaseMuta
+            - ProxyHatch
+            - LingDroneRush
             - RavagerRush
+            - ProxyHatchVariation
+            - Ultras
+            - BroRush
+            - DroneRush
+            - DroneRushVariation
 
     Zerg:
         BotName: ZergRace
