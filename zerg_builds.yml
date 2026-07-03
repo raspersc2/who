@@ -10,7 +10,8 @@ BuildChoices:
             # - Ultras
             # - OneBaseMuta
             # - ProxyHatch
-            - DroneRush
+            # - DroneRush
+            - ProxyHatchVariation
             # - DroneRushVariation
             # - RavagerRush
             # - LingDroneRush
@@ -26,6 +27,7 @@ BuildChoices:
             - ProxyHatchVariation
             - Ultras
             - BroRush
+            - DroneRushFast
             - DroneRush
             - DroneRushVariation
 
@@ -39,6 +41,7 @@ BuildChoices:
             - ProxyHatchVariation
             - Ultras
             - BroRush
+            - DroneRushFast
             - DroneRush
             - DroneRushVariation
 
@@ -52,6 +55,7 @@ BuildChoices:
             - ProxyHatchVariation
             - Ultras
             - BroRush
+            - DroneRushFast
             - DroneRush
             - DroneRushVariation
 
@@ -65,6 +69,7 @@ BuildChoices:
             - ProxyHatchVariation
             - Ultras
             - BroRush
+            - DroneRushFast
             - DroneRush
             - DroneRushVariation
 
@@ -94,6 +99,11 @@ Builds:
             - 12 cancel_gas
             - 12 cancel_gas
             - 12 overlord
+            -
+    DroneRushFast:
+        ConstantWorkerProductionTill: 0
+        OpeningBuildOrder:
+            - 12 drone
 
     DroneRushVariation:
         ConstantWorkerProductionTill: 0
